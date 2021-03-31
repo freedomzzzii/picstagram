@@ -1,0 +1,37 @@
+@import '../../common/constant.scss';
+
+.Navbar {
+  background-color: $nav-bg;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: $nav-border;
+  padding: 10px;
+  > .title {
+    font-family: $font-family-satisfy;
+  }
+  > .box-menu {
+    > .box-avatar {
+      width: 30px;
+      height: 30px;
+      max-width: 30px;
+      min-width: 30px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: $nav-bg;
+      border-radius: 50%;
+      box-shadow: 1px 1px 10px 0px rgba(0, 0, 0, 0.5);
+      border-bottom: $nav-border;
+      > .avatar {
+        width: 100%;
+        max-width: 30px;
+        min-width: 30px;
+      }
+    }
+  }
+}
