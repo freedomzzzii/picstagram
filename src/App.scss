@@ -1,38 +1,29 @@
-.App {
-  text-align: center;
-}
+@import './common/constant.scss';
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
+html {
+  background-color: $app-bg;
+  body {
+    margin: 0;
+    * {
+      outline: unset;
+    }
+    > #root {
+      > .App {
+        font-family: $font-family-barlow;
+        font-weight: 300;
+        input {
+          background-color: $input-bg;
+          border-radius: 3px;
+          border: $input-border;
+          padding: 5px 10px;
+          &::placeholder {
+            color: $input-placeholder;
+            text-align: center;
+            font-weight: 300;
+            font-family: $font-family-barlow;
+          }
+        }
+      }
+    }
   }
 }
