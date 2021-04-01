@@ -3,8 +3,13 @@
 $font-family-satisfy: 'Satisfy', cursive;
 $font-family-barlow: 'Barlow Semi Condensed', sans-serif;
 
+// color
+$color-black: #4a4a4a;
+$color-gray: #8e8e8e;
+
 // app
 $app-bg: #fafafa;
+$app-border: 1px solid #dbdbdb;
 
 // input
 $input-bg: #fafafa;
@@ -13,4 +18,10 @@ $input-placeholder: #a5a5a5;
 
 // nav
 $nav-bg: #ffffff;
-$nav-border: 1px solid #dbdbdb;
+$nav-border: $app-border;
+$nav-shadow: 1px 1px 10px 0px rgba(0, 0, 0, 0.5);
+
+// home
+$home-border: $app-border;
+$home-photo-bg: #ffffff;
+$home-photo-dummy-bg: #efefef;

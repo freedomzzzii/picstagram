@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import './Navbar.scss';
@@ -24,9 +24,7 @@ function Navbar() {
   const [isReady, setIsReady] = useState<boolean>(false);
 
   useEffect(() => {
-    if (!isReady && !getProfile.data) {
-      dispatch(fetchGetProfile());
-    }
+    dispatch(fetchGetProfile());
   }, [dispatch]);
 
   useEffect(() => {
@@ -44,6 +42,7 @@ function Navbar() {
       <span className="title">Picstagram</span>
       <input placeholder="search" />
       <span className="box-menu">
+        <span className="icon far fa-heart" />
         <span className="box-avatar">
           <img className="avatar" src={getProfile.data?.profile_image.medium} alt="avatar" />
         </span>
