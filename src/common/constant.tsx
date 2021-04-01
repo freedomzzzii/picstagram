@@ -8,6 +8,9 @@ type constantTypes = {
   GET_PROFILE_REQUEST: string,
   GET_PROFILE_SUCCESS: string,
   GET_PROFILE_FAILURE: string,
+  GET_LIST_PHOTO_REQUEST: string,
+  GET_LIST_PHOTO_SUCCESS: string,
+  GET_LIST_PHOTO_FAILURE: string,
   initialState: initialStateType,
   initialLoadingState: initialStateLoadingType,
 };
@@ -24,6 +27,10 @@ const constant: constantTypes = {
   // - loading
   LOADING_GLOBAL_SHOW: 'LOADING_GLOBAL_SHOW',
   LOADING_GLOBAL_HIDE: 'LOADING_GLOBAL_HIDE',
+  // - photo
+  GET_LIST_PHOTO_REQUEST: 'GET_LIST_PHOTO_REQUEST',
+  GET_LIST_PHOTO_SUCCESS: 'GET_LIST_PHOTO_SUCCESS',
+  GET_LIST_PHOTO_FAILURE: 'GET_LIST_PHOTO_FAILURE',
   // state redux
   initialState: {},
   initialLoadingState: {
