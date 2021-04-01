@@ -24,10 +24,10 @@ function Navbar() {
   const [isReady, setIsReady] = useState<boolean>(false);
 
   useEffect(() => {
-    if (!isReady) {
+    if (!isReady && !getProfile.data) {
       dispatch(fetchGetProfile());
     }
-  }, [isReady]);
+  }, [dispatch]);
 
   useEffect(() => {
     if (getProfile.type === constant.GET_PROFILE_SUCCESS) {
