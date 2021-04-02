@@ -1,12 +1,12 @@
 import { useState, useEffect, ChangeEvent, useRef, RefObject } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-// import InfiniteScroll from 'react-infinite-scroller';
+import { Link } from 'react-router-dom';
 
 import './Navbar.scss';
 
 import constant from '../../common/constant';
 import { fetchGetProfile, fetchSearchUsers } from '../../redux/actions';
-import { actionDefaultType } from '../../common/type'
+import { actionDefaultType } from '../../common/type';
 
 
 type searchUserType = {
@@ -86,14 +86,14 @@ function Navbar() {
   return (
     <div className="Navbar">
       <div className="nav">
-        <span className="title">Picstagram</span>
+        <Link to={constant.pathHome} className="title">Picstagram</Link>
         <span className="box-search" ref={dropdownRef}>
           <input placeholder="search" value={search} onChange={handleSearch} />
           <div className={`dropdown${showDropdown ? ' active' : ''}`}>
             {
               searchUsers.data?.results ?
                 searchUsers.data?.results.map((element: searchUserType) => (
-                  <div className="user">
+                  <Link to={`/post/${element.username}`} className="user">
                     <span className="box-avatar">
                       <img className="avatar" src={element.profile_image.medium} alt="avatar" />
                     </span>
@@ -101,7 +101,7 @@ function Navbar() {
                       <div className="username">{element.username}</div>
                       <div className="bio">{element.bio}</div>
                     </span>
-                  </div>
+                  </Link>
                 ))
                 : null
             }

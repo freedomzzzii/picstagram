@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import InfiniteScroll from 'react-infinite-scroller';
+import { useHistory } from 'react-router-dom';
 
 import './home.scss';
 
@@ -19,7 +20,7 @@ type stateTypes = {
 };
 type dataType = {
   alt_description: string,
-  updated_at: string,
+  created_at: string,
   urls: {
     small: string,
   },
@@ -34,6 +35,7 @@ type dataType = {
 function Home() {
   const dispatch = useDispatch();
   const { getListPhoto } = useSelector((state: stateTypes) => state);
+  const history = useHistory();
 
   const [isReady, setIsReady] = useState<boolean>(false);
   const [listPhoto, setListPhoto] = useState<Array<{}>>([]);
@@ -50,26 +52,27 @@ function Home() {
           const element = (`
             <div class="box-photo" id="box-photo-${sumElement + index}" key="box-photo-${sumElement + index}">
               <div class="box-top">
-                <div class="box-avatar">
+                <div class="box-avatar" id="box-avatar-${index}">
                   <img class="avatar" src="${ele.user.profile_image.medium}" alt="avatar-${sumElement + index}" />
                 </div>
-                <span class="username">${ele.user.username}</span>
+                <span class="username" id="username-${index}">${ele.user.username}</span>
               </div>
               <div class="box-image">
                 <img src="${ele.urls.small}" id="image-${sumElement + index}" alt="post-${sumElement + index}" />
               </div>
               <div class="box-bottom">
                 <div class="group">
-                  <span class="username">${ele.user.username}</span>
+                  <span class="username" id="username-des-${index}">${ele.user.username}</span>
                   <span class="description">${ele.alt_description}</span>
                 </div>
-                <div class="update-at">${timeAgo(ele.updated_at)}</div>
+                <div class="update-at">${timeAgo(ele.created_at)}</div>
               </div>
             </div>
           `);
 
           box?.insertAdjacentHTML('beforeend', element);
-          handleClickImage(index, sumElement)
+          handleClickImage(index, sumElement);
+          handleClickUser(index, sumElement, ele.user.username);
         });
       }
     } catch (error) {
@@ -101,6 +104,29 @@ function Home() {
           });
         };
       }
+    } catch (error) {
+      return
+    }
+  }
+
+  const handleClickUser = (index: number, sumElement: number, username: string): void => {
+    try {
+      const avatar = document.getElementById(`box-avatar-${sumElement + index}`);
+      const usernameTitle = document.getElementById(`username-${sumElement + index}`);
+      const usernameDes = document.getElementById(`username-dex-${sumElement + index}`);
+
+      const handleRedirect = () => history.push(`/post/${username}`);
+
+      if (avatar) {
+        avatar.onclick = handleRedirect;
+      }
+      if (usernameTitle) {
+        usernameTitle.onclick = handleRedirect;
+      }
+      if (usernameDes) {
+        usernameDes.onclick = handleRedirect;
+      }
+
     } catch (error) {
       return
     }
