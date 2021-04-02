@@ -116,6 +116,7 @@ function Navbar() {
           </div>
         </span>
         <span className="box-menu">
+          <Link to={constant.pathHome} className="icon fas fa-home" />
           <span className="box-avatar">
             <img className="avatar" src={getProfile.data?.profile_image.medium} alt="avatar" />
           </span>
