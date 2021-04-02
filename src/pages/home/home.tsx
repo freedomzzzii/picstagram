@@ -40,7 +40,7 @@ function Home() {
   const [hasMore, setHasMore] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
-  const handleAppendPhoto = (): any => {
+  const handleAppendPhoto = (): void => {
     try {
       if (getListPhoto.data) {
         const box = document.getElementById('list');
@@ -48,33 +48,63 @@ function Home() {
 
         getListPhoto.data?.forEach((ele: dataType, index: number) => {
           const element = (`
-        <div class="box-photo" id="box-photo-${sumElement + index}" key="box-photo-${sumElement + index}">
-          <div class="box-top">
-            <div class="box-avatar">
-              <img class="avatar" src="${ele.user.profile_image.medium}" alt="avatar-${sumElement + index}" />
+            <div class="box-photo" id="box-photo-${sumElement + index}" key="box-photo-${sumElement + index}">
+              <div class="box-top">
+                <div class="box-avatar">
+                  <img class="avatar" src="${ele.user.profile_image.medium}" alt="avatar-${sumElement + index}" />
+                </div>
+                <span class="username">${ele.user.username}</span>
+              </div>
+              <div class="box-image">
+                <img src="${ele.urls.small}" id="image-${sumElement + index}" alt="post-${sumElement + index}" />
+              </div>
+              <div class="box-bottom">
+                <div class="group">
+                  <span class="username">${ele.user.username}</span>
+                  <span class="description">${ele.alt_description}</span>
+                </div>
+                <div class="update-at">${timeAgo(ele.updated_at)}</div>
+              </div>
             </div>
-            <span class="username">${ele.user.username}</span>
-          </div>
-          <div class="box-image">
-            <img src="${ele.urls.small}" alt="post-${sumElement + index}" />
-          </div>
-          <div class="box-bottom">
-            <div class="group">
-              <span class="username">${ele.user.username}</span>
-              <span class="description">${ele.alt_description}</span>
-            </div>
-            <div class="update-at">${timeAgo(ele.updated_at)}</div>
-          </div>
-        </div>
-      `);
+          `);
 
           box?.insertAdjacentHTML('beforeend', element);
+          handleClickImage(index, sumElement)
         });
       }
     } catch (error) {
       return;
     }
   };
+
+  const handleClickImage = (index: number, sumElement: number): void => {
+    try {
+      const getElement = document.getElementById(`box-photo-${sumElement + index}`);
+      const image = document.getElementById(`image-${sumElement + index}`);
+
+      if (getElement && image) {
+        image.onclick = () => {
+          const icon = document.createElement('span');
+          icon.id = `icon-${sumElement + index}`;
+          icon.className = 'animate__animated my-element fas fa-heart icon animate__bounceIn';
+
+          getElement?.insertAdjacentElement('beforeend', icon);
+
+          const iconElement = document.getElementById(`icon-${sumElement + index}`);
+          iconElement?.addEventListener('animationend', () => {
+            if (iconElement.classList.contains('animate__bounceIn')) {
+              iconElement.classList.remove('animate__bounceIn');
+              iconElement.classList.add('animate__bounceOut', 'animate__delay-1s');
+            } else if (iconElement.classList.contains('animate__bounceOut')) {
+              iconElement.remove();
+            }
+          });
+        };
+      }
+    } catch (error) {
+      return
+    }
+  }
 
   const handleGetListPhoto = (): void => {
     if (hasMore && !isLoading) {

@@ -52,7 +52,6 @@
           border-radius: 50%;
           box-shadow: $nav-shadow;
           border: $nav-border;
-          cursor: pointer;
           > .avatar {
             width: 100%;
             max-width: 30px;
@@ -85,7 +84,6 @@
     > .icon {
       font-size: 25px;
       margin-right: 20px;
-      cursor: pointer;
     }
     > .box-avatar {
       width: 30px;
@@ -100,7 +98,6 @@
       border-radius: 50%;
       box-shadow: $nav-shadow;
       border: $nav-border;
-      cursor: pointer;
       > .avatar {
         width: 100%;
         max-width: 30px;
