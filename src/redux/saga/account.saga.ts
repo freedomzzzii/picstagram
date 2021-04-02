@@ -1,4 +1,4 @@
-import { takeLatest, race, put } from 'redux-saga/effects';
+import { takeLatest } from 'redux-saga/effects';
 
 import constant from '../../common/constant';
 import { actionDefaultWithPayloadType, actionDefaultType } from '../../common/type';
@@ -7,6 +7,11 @@ import { workerServiceGetAPI } from './service.saga';
 type actionSearchUsersType = actionDefaultWithPayloadType & {
   payload?: {
     query: string,
+  },
+}
+type actionGetProfileByUserType = actionDefaultWithPayloadType & {
+  payload?: {
+    username: string,
   },
 }
 
@@ -20,10 +25,7 @@ function* workerGetProfile(action: actionDefaultType) {
 }
 
 export function* watcherGetProfile(): any {
-  yield race({
-    response: yield takeLatest(constant.GET_PROFILE_REQUEST, workerGetProfile),
-    cancel: yield put({ type: constant.LOADING_GLOBAL_HIDE }),
-  })
+  yield takeLatest(constant.GET_PROFILE_REQUEST, workerGetProfile);
 }
 
 function* workerSearchUsers(action: actionSearchUsersType) {
@@ -36,8 +38,18 @@ function* workerSearchUsers(action: actionSearchUsersType) {
 }
 
 export function* watcherSearchUsers(): any {
-  yield race({
-    response: yield takeLatest(constant.GET_SEARCH_USERS_REQUEST, workerSearchUsers),
-    cancel: yield put({ type: constant.LOADING_GLOBAL_HIDE }),
-  })
+  yield takeLatest(constant.GET_SEARCH_USERS_REQUEST, workerSearchUsers)
+}
+
+function* workerGetProfileByUser(action: actionGetProfileByUserType) {
+  yield workerServiceGetAPI({
+    ...action,
+    pathAPI: `/users/${action.payload?.username ? action.payload?.username : ''}`,
+    typeSuccess: constant.GET_PROFILE_BY_USER_SUCCESS,
+    typeFailure: constant.GET_PROFILE_BY_USER_FAILURE,
+  });
+}
+
+export function* watcherGetProfileByUser(): any {
+  yield takeLatest(constant.GET_PROFILE_BY_USER_REQUEST, workerGetProfileByUser);
 }
