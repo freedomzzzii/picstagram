@@ -107,7 +107,6 @@ function Navbar() {
         </div>
       </span>
       <span className="box-menu">
-        <span className="icon far fa-heart" />
         <span className="box-avatar">
           <img className="avatar" src={getProfile.data?.profile_image.medium} alt="avatar" />
         </span>
