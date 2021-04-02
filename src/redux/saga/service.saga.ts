@@ -6,6 +6,9 @@ type actionServiceGetTypes = {
   pathAPI: string,
   typeSuccess: string,
   typeFailure: string,
+  detail?: {
+    [key: string]: any,
+  },
 };
 
 export function* workerServiceGetAPI(action: actionServiceGetTypes): any {
@@ -25,13 +28,13 @@ export function* workerServiceGetAPI(action: actionServiceGetTypes): any {
 
     switch (response.status) {
       case 200:
-        yield put({ type: action.typeSuccess, data, status: response.status });
+        yield put({ type: action.typeSuccess, data, status: response.status, detail: action.detail });
         return yield put({ type: constant.LOADING_GLOBAL_HIDE });
       case 500:
-        yield put({ type: action.typeFailure, data: null, status: response.status });
+        yield put({ type: action.typeFailure, data: null, status: response.status, detail: action.detail });
         return yield put({ type: constant.LOADING_GLOBAL_HIDE });
       default:
-        yield put({ type: action.typeFailure, data: null, status: response.status });
+        yield put({ type: action.typeFailure, data: null, status: response.status, detail: action.detail });
         return yield put({ type: constant.LOADING_GLOBAL_HIDE });
     }
   } catch (error) {
@@ -41,6 +44,7 @@ export function* workerServiceGetAPI(action: actionServiceGetTypes): any {
       data: null,
       status: error.status ? error.status : error,
       dateTime: new Date(),
+      detail: action.detail,
     });
   }
 }
