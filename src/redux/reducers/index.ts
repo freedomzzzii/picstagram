@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux';
 
-import { getProfile, searchUsers } from './account.reducer';
+import { getProfile, searchUsers, getProfileByUser } from './account.reducer';
 
 import { loading } from './loading.reducer';
 
-import { getListPhoto } from './photo.reducers';
+import { getListPhoto, getListPhotoByUser } from './photo.reducers';
 
 export default combineReducers({
   // loading
@@ -12,6 +12,8 @@ export default combineReducers({
   // account
   getProfile,
   searchUsers,
+  getProfileByUser,
   // photo
   getListPhoto,
+  getListPhotoByUser,
 });

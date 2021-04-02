@@ -1,0 +1,21 @@
+.Loading {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+  > .box-lottie {
+    background-color: #ffffff;
+    position: absolute;
+    top: calc(50% - 50px);
+    left: calc(50% - 50px);
+    border-radius: 10px;
+    box-shadow: 1px 1px 10px 0px rgba(0, 0, 0, 0.5);
+    > .lottie {
+      width: 150px;
+      height: 150px;
+      opacity: 0.8;
+    }
+  }
+}

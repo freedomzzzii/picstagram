@@ -26,3 +26,19 @@ export const searchUsers = (state = constant.initialState, action: actionDefault
       return state ? state : constant.initialState;
   }
 };
+
+export const getProfileByUser = (state = constant.initialState, action: actionDefaultType) => {
+  switch (action.type) {
+    case constant.GET_PROFILE_BY_USER_REQUEST:
+      return Object.assign({}, state, { ...action });
+    case constant.GET_PROFILE_BY_USER_SUCCESS:
+      return Object.assign({}, state, { ...action });
+    case constant.GET_PROFILE_BY_USER_FAILURE:
+      return Object.assign({}, state, { ...action });
+    case constant.CLEAR_DATA_POST_USER_PAGE:
+      return constant.initialState;
+    default:
+      return state ? state : constant.initialState;
+  }
+};
+
