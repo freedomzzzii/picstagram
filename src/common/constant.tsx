@@ -30,7 +30,7 @@ type constantTypes = {
 const constant: constantTypes = {
   // environtment variable
   host: process.env.REACT_APP_HOST_API,
-  accessToken: 'VgWTd0VZoxbCwKRe7iMsO4r2i9so3vyTzBrvXURF6lM',
+  accessToken: process.env.REACT_APP_UNSPLASH_ACCESS_TOKEN,
   // action type
   // - clear
   CLEAR_DATA_POST_USER_PAGE: 'CLEAR_DATA_POST_USER_PAGE',
