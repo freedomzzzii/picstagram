@@ -11,6 +11,7 @@
     "@types/react": "17.0.0",
     "@types/react-dom": "17.0.0",
     "animate.css": "4.1.1",
+    "lottie-web": "^5.7.7",
     "node-sass": "5.0.0",
     "react": "17.0.2",
     "react-dom": "17.0.2",
@@ -50,7 +51,9 @@
     ]
   },
   "devDependencies": {
+    "@types/history": "4.7.8",
     "@types/react-infinite-scroller": "1.2.1",
+    "@types/react-router-dom": "5.1.7",
     "@types/redux-actions": "2.6.1",
     "@types/redux-logger": "3.0.8",
     "redux-logger": "3.0.6"

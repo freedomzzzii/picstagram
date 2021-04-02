@@ -7,6 +7,10 @@ html {
     * {
       outline: unset;
     }
+    a {
+      color: $color-black;
+      text-decoration: unset;
+    }
     > #root {
       > .App {
         font-family: $font-family-barlow;
