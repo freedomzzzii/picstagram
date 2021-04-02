@@ -3,78 +3,79 @@
 .Home {
   padding: 25px;
   > .box-list-photo {
-    // padding-top: 25px;
-    > .box-photo {
-      border: $home-border;
-      border-radius: 3px;
-      margin-bottom: 15px;
-      > .box-top {
-        padding: 10px 15px;
-        border-bottom: $home-border;
-        display: flex;
-        align-items: center;
-        > .box-avatar {
-          width: 40px;
-          height: 40px;
-          max-width: 40px;
-          max-height: 40px;
-          overflow: hidden;
+    > .list {
+      > .box-photo {
+        border: $home-border;
+        border-radius: 3px;
+        margin-bottom: 15px;
+        > .box-top {
+          padding: 10px 15px;
+          border-bottom: $home-border;
           display: flex;
           align-items: center;
-          justify-content: center;
-          background-color: $home-photo-dummy-bg;
-          border-radius: 50%;
-          border: $home-border;
-          cursor: pointer;
-          > .avatar {
-            width: 100%;
+          > .box-avatar {
+            width: 40px;
+            height: 40px;
             max-width: 40px;
             max-height: 40px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: $home-photo-dummy-bg;
+            border-radius: 50%;
+            border: $home-border;
+            cursor: pointer;
+            > .avatar {
+              width: 100%;
+              max-width: 40px;
+              max-height: 40px;
+            }
           }
-        }
-        > .username {
-          font-size: 16px;
-          margin-left: 15px;
-          font-weight: 400;
-          cursor: pointer;
-          &:hover {
-            text-decoration: underline;
-          }
-        }
-      }
-      > .box-image {
-        width: 100%;
-        max-width: 100%;
-        overflow: hidden;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background-color: $home-photo-dummy-bg;
-        > img {
-          object-fit: cover;
-          width: 100%;
-        }
-      }
-      > .box-bottom {
-        padding: 10px 15px;
-        > .group {
           > .username {
             font-size: 16px;
+            margin-left: 15px;
             font-weight: 400;
-            margin-right: 5px;
             cursor: pointer;
             &:hover {
               text-decoration: underline;
             }
           }
-          > .description {
-            font-size: 14px;
+        }
+        > .box-image {
+          width: 100%;
+          max-width: 100%;
+          overflow: hidden;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background-color: $home-photo-dummy-bg;
+          > img {
+            object-fit: cover;
+            width: 100%;
           }
         }
-        > .update-at {
-          color: $color-gray;
-          font-size: 10px;
-          margin-top: 10px;
+        > .box-bottom {
+          padding: 10px 15px;
+          > .group {
+            > .username {
+              font-size: 16px;
+              font-weight: 400;
+              margin-right: 5px;
+              cursor: pointer;
+              &:hover {
+                text-decoration: underline;
+              }
+            }
+            > .description {
+              font-size: 14px;
+            }
+          }
+          > .update-at {
+            color: $color-gray;
+            font-size: 10px;
+            margin-top: 10px;
+          }
         }
       }
     }

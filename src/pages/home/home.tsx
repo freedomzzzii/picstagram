@@ -12,6 +12,9 @@ type stateTypes = {
   getListPhoto: {
     type: string,
     data?: [dataType],
+    detail?: {
+      query: string,
+    },
   },
 };
 type dataType = {
@@ -35,11 +38,12 @@ function Home() {
   const [isReady, setIsReady] = useState<boolean>(false);
   const [listPhoto, setListPhoto] = useState<Array<{}>>([]);
   const [hasMore, setHasMore] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
-  const handleAppendPhoto = (): void => {
+  const handleAppendPhoto = (): any => {
     try {
       if (getListPhoto.data) {
-        const box = document.getElementById('box-list-photo');
+        const box = document.getElementById('list');
         const sumElement = listPhoto.length;
 
         getListPhoto.data?.forEach((ele: dataType, index: number) => {
@@ -66,9 +70,6 @@ function Home() {
 
           box?.insertAdjacentHTML('beforeend', element);
         });
-
-        setListPhoto([...listPhoto, ...getListPhoto.data]);
-        setHasMore(true);
       }
     } catch (error) {
       return;
@@ -76,9 +77,9 @@ function Home() {
   };
 
   const handleGetListPhoto = (): void => {
-    if (hasMore) {
+    if (hasMore && !isLoading) {
       setHasMore(false);
-      dispatch(fetchGetListPhoto());
+      dispatch(fetchGetListPhoto({ query: getListPhoto.detail?.query }));
     }
   }
 
@@ -94,27 +95,26 @@ function Home() {
 
       if (getListPhoto.data) {
         handleAppendPhoto();
+
+        setListPhoto([...listPhoto, ...getListPhoto.data]);
+        setIsLoading(false);
+        setHasMore(true);
       }
     }
   }, [getListPhoto]); // eslint-disable-line react-hooks/exhaustive-deps
-
-  if (!isReady) {
-    // return null;
-  }
 
   return (
     <div className="Home">
       <InfiniteScroll
         pageStart={0}
         loadMore={handleGetListPhoto}
-        hasMore={hasMore}
-        loader={<div className="loader" key={0}>Loading ...</div>}
+        hasMore={hasMore && !isLoading}
         className="box-list-photo"
         id="box-list-photo"
       >
-        <div />
+        <div className="list" id="list" />
       </InfiniteScroll>
-    </div>
+    </div >
   );
 }
 
