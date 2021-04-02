@@ -1,0 +1,112 @@
+@import '../../common/constant.scss';
+
+.Navbar {
+  background-color: $nav-bg;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  border-bottom: $nav-border;
+  padding: 10px;
+  > .nav {
+    max-width: 600px;
+    margin: 0px auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    > .title {
+      font-family: $font-family-satisfy;
+    }
+    > .box-search {
+      position: relative;
+      width: 100%;
+      max-width: 200px;
+      > input {
+        width: 100%;
+        max-width: calc(200px - 22px);
+      }
+      > .dropdown {
+        display: none;
+        position: absolute;
+        background-color: $nav-bg;
+        width: 100%;
+        border: $nav-border;
+        box-shadow: $nav-shadow-search;
+        top: 37px;
+        left: 0;
+        max-height: 400px;
+        overflow: auto;
+        &.active {
+          display: unset;
+        }
+        > .user {
+          padding: 10px;
+          display: flex;
+          align-items: center;
+          > .box-avatar {
+            min-width: 30px;
+            min-height: 30px;
+            max-width: 30px;
+            max-height: 30px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: $nav-bg;
+            border-radius: 50%;
+            box-shadow: $nav-shadow;
+            border: $nav-border;
+            > .avatar {
+              width: 100%;
+              max-width: 30px;
+              max-height: 30px;
+            }
+          }
+          > .group {
+            margin-left: 10px;
+            max-width: calc(100% - 42px);
+            > * {
+              overflow: hidden;
+              text-overflow: ellipsis;
+              white-space: nowrap;
+            }
+            > .username {
+              font-size: 16px;
+              font-weight: 400;
+            }
+            > .bio {
+              font-size: 12px;
+              color: $color-gray;
+            }
+          }
+        }
+      }
+    }
+    > .box-menu {
+      display: flex;
+      align-items: center;
+      > .icon {
+        font-size: 25px;
+        margin-right: 20px;
+      }
+      > .box-avatar {
+        width: 30px;
+        height: 30px;
+        max-width: 30px;
+        max-height: 30px;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: $nav-bg;
+        border-radius: 50%;
+        box-shadow: $nav-shadow;
+        border: $nav-border;
+        > .avatar {
+          width: 100%;
+          max-width: 30px;
+          max-height: 30px;
+        }
+      }
+    }
+  }
+}
