@@ -42,6 +42,7 @@
           padding: 10px;
           display: flex;
           align-items: center;
+          cursor: pointer;
           > .box-avatar {
             min-width: 30px;
             min-height: 30px;
@@ -72,7 +73,6 @@
             > .username {
               font-size: 16px;
               font-weight: 400;
-              cursor: pointer;
             }
             > .bio {
               font-size: 12px;
