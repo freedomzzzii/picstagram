@@ -35,6 +35,8 @@ export const getProfileByUser = (state = constant.initialState, action: actionDe
       return Object.assign({}, state, { ...action });
     case constant.GET_PROFILE_BY_USER_FAILURE:
       return Object.assign({}, state, { ...action });
+    case constant.CLEAR_DATA_POST_USER_PAGE:
+      return constant.initialState;
     default:
       return state ? state : constant.initialState;
   }

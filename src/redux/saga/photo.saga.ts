@@ -7,6 +7,7 @@ import { workerServiceGetAPI } from './service.saga';
 type actionGetListPhotoByUserType = actionDefaultWithPayloadType & {
   payload?: {
     username: string,
+    total: number,
   },
 }
 
@@ -27,7 +28,7 @@ export function* watcherGetListPhoto(): any {
 function* workerGetListPhotoByUser(action: actionGetListPhotoByUserType) {
   yield workerServiceGetAPI({
     ...action,
-    pathAPI: `/users/${action.payload?.username ? action.payload?.username : ''}/photos?per_page=10&order_by=latest`,
+    pathAPI: `/users/${action.payload?.username ? action.payload?.username : ''}/photos?per_page=${action.payload?.total ? action.payload?.total : '10'}&order_by=latest`,
     typeSuccess: constant.GET_LIST_PHOTO_BY_USER_SUCCESS,
     typeFailure: constant.GET_LIST_PHOTO_BY_USER_FAILURE,
   });

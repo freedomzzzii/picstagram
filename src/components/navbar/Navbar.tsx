@@ -1,6 +1,7 @@
 import { useState, useEffect, ChangeEvent, useRef, RefObject } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 import './Navbar.scss';
 
@@ -34,6 +35,7 @@ type stateType = {
 function Navbar() {
   const dispatch = useDispatch();
   const { getProfile, searchUsers } = useSelector((state: stateType) => state);
+  const history = useHistory();
 
   const [isReady, setIsReady] = useState<boolean>(false);
   const [search, setSearch] = useState<string>('');
@@ -52,6 +54,12 @@ function Navbar() {
       setShowDropdown(false);
     }
   };
+
+  const handleRedirect = (username: string): void => {
+    setShowDropdown(false);
+
+    history.push(`/post/${username}`);
+  }
 
   useEffect(() => {
     document.addEventListener('mousedown', handleClickOutside);
@@ -93,7 +101,7 @@ function Navbar() {
             {
               searchUsers.data?.results ?
                 searchUsers.data?.results.map((element: searchUserType) => (
-                  <Link to={`/post/${element.username}`} className="user">
+                  <div className="user" onClick={() => handleRedirect(element.username)}>
                     <span className="box-avatar">
                       <img className="avatar" src={element.profile_image.medium} alt="avatar" />
                     </span>
@@ -101,7 +109,7 @@ function Navbar() {
                       <div className="username">{element.username}</div>
                       <div className="bio">{element.bio}</div>
                     </span>
-                  </Link>
+                  </div>
                 ))
                 : null
             }

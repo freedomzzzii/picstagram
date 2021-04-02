@@ -6,7 +6,8 @@ import './postUser.scss';
 
 import constant from '../../common/constant';
 import { actionDefaultType } from '../../common/type';
-import { fetchGetListPhotoByUser, fetchGetProfileByUser } from '../../redux/actions';
+import { fetchGetListPhotoByUser, fetchGetProfileByUser, clearPostUser } from '../../redux/actions';
+import Loading from '../../components/loading/loading';
 
 type stateType = {
   getListPhotoByUser: actionDefaultType & {
@@ -38,28 +39,53 @@ function PostUser() {
   const { getListPhotoByUser, getProfileByUser } = useSelector((state: stateType) => state);
 
   const [isReady, setIsReady] = useState<boolean>(false);
+  const [posts, setPosts] = useState<Array<any>>([]);
+
+  const handlePosts = (): void => {
+    if (getListPhotoByUser.data) {
+      const newPosts = getListPhotoByUser.data?.map((ele: dataType, index: number) => (
+        <div className="box-post" key={`box-post-${index}`}>
+          <div className="dummy" />
+          <div className="post">
+            <img src={ele.urls.small} alt={`post-${index}`} />
+          </div>
+        </div>
+      ));
+
+      setPosts(newPosts);
+      setIsReady(true);
+      return
+    }
+    setPosts([]);
+    setIsReady(true);
+    return
+  }
 
   useEffect(() => {
     window.scrollTo(0, 0);
     setIsReady(false);
 
-    dispatch(fetchGetProfileByUser({ username }))
-    dispatch(fetchGetListPhotoByUser({ username }));
+    dispatch(fetchGetProfileByUser({ username }));
+
+    return () => {
+      dispatch(clearPostUser());
+    }
   }, [dispatch, username]);
 
   useEffect(() => {
     if (getProfileByUser.type === constant.GET_PROFILE_BY_USER_SUCCESS) {
-      setIsReady(true);
-    }
-
-    return () => {
-      console.log('hello')
-      setIsReady(false);
+      dispatch(fetchGetListPhotoByUser({ username, total: getProfileByUser.data?.total_photos }));
     }
   }, [getProfileByUser]);
 
+  useEffect(() => {
+    if (getListPhotoByUser.type === constant.GET_LIST_PHOTO_BY_USER_SUCCESS) {
+      handlePosts();
+    }
+  }, [getListPhotoByUser])
+
   if (!isReady) {
-    return null;
+    return <Loading />;
   }
 
   return (
@@ -80,18 +106,7 @@ function PostUser() {
         </span>
       </div>
       <div className="box-list-post">
-        {
-          getListPhotoByUser.data ?
-            getListPhotoByUser.data?.map((ele: dataType, index: number) => (
-              <div className="box-post" key={`box-post-${index}`}>
-                <div className="dummy" />
-                <div className="post">
-                  <img src={ele.urls.small} alt={`post-${index}`} />
-                </div>
-              </div>
-            ))
-            : null
-        }
+        {posts}
       </div>
     </div>
   );

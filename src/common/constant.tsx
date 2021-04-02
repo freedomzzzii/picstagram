@@ -5,6 +5,7 @@ type constantTypes = {
   accessToken: string | undefined,
   LOADING_GLOBAL_SHOW: string,
   LOADING_GLOBAL_HIDE: string,
+  CLEAR_DATA_POST_USER_PAGE: string,
   GET_PROFILE_REQUEST: string,
   GET_PROFILE_SUCCESS: string,
   GET_PROFILE_FAILURE: string,
@@ -29,8 +30,10 @@ type constantTypes = {
 const constant: constantTypes = {
   // environtment variable
   host: process.env.REACT_APP_HOST_API,
-  accessToken: process.env.REACT_APP_UNSPLASH_ACCESS_TOKEN,
+  accessToken: 'VgWTd0VZoxbCwKRe7iMsO4r2i9so3vyTzBrvXURF6lM',
   // action type
+  // - clear
+  CLEAR_DATA_POST_USER_PAGE: 'CLEAR_DATA_POST_USER_PAGE',
   // - account
   GET_PROFILE_REQUEST: 'GET_PROFILE_REQUEST',
   GET_PROFILE_SUCCESS: 'GET_PROFILE_SUCCESS',
