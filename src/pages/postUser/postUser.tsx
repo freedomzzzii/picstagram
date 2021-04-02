@@ -76,13 +76,13 @@ function PostUser() {
     if (getProfileByUser.type === constant.GET_PROFILE_BY_USER_SUCCESS) {
       dispatch(fetchGetListPhotoByUser({ username, total: getProfileByUser.data?.total_photos }));
     }
-  }, [getProfileByUser]);
+  }, [getProfileByUser]); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     if (getListPhotoByUser.type === constant.GET_LIST_PHOTO_BY_USER_SUCCESS) {
       handlePosts();
     }
-  }, [getListPhotoByUser])
+  }, [getListPhotoByUser]); // eslint-disable-line react-hooks/exhaustive-deps
 
   if (!isReady) {
     return <Loading />;
