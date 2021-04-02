@@ -13,3 +13,16 @@ export const getProfile = (state = constant.initialState, action: actionDefaultT
       return state ? state : constant.initialState;
   }
 };
+
+export const searchUsers = (state = constant.initialState, action: actionDefaultType) => {
+  switch (action.type) {
+    case constant.GET_SEARCH_USERS_REQUEST:
+      return Object.assign({}, state, { ...action });
+    case constant.GET_SEARCH_USERS_SUCCESS:
+      return Object.assign({}, state, { ...action });
+    case constant.GET_SEARCH_USERS_FAILURE:
+      return Object.assign({}, state, { ...action });
+    default:
+      return state ? state : constant.initialState;
+  }
+};

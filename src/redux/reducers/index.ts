@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 
-import { getProfile } from './account.reducer';
+import { getProfile, searchUsers } from './account.reducer';
 
 import { loading } from './loading.reducer';
 
@@ -11,6 +11,7 @@ export default combineReducers({
   loading,
   // account
   getProfile,
+  searchUsers,
   // photo
   getListPhoto,
 });
