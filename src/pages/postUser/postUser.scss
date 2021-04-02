@@ -1,0 +1,84 @@
+@import '../../common/constant.scss';
+
+.PostUser {
+  max-width: 600px;
+  margin: 0px auto;
+  > .box-detail {
+    display: flex;
+    margin: 30px;
+    border-bottom: $post-user-border;
+    padding-bottom: 30px;
+    > .box-avatar {
+      min-width: 100px;
+      min-height: 100px;
+      max-width: 100px;
+      max-height: 100px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: $nav-bg;
+      border-radius: 50%;
+      box-shadow: $nav-shadow;
+      border: $nav-border;
+      margin-right: 30px;
+      > .avatar {
+        width: 100%;
+        max-width: 100px;
+        max-height: 100px;
+      }
+    }
+    > .detail {
+      margin-top: 10px;
+      > .username {
+        font-size: 22px;
+        font-weight: 500;
+      }
+      > .bio {
+        margin-top: 5px;
+      }
+      > .location {
+        margin-top: 5px;
+        color: $color-gray;
+        font-size: 13px;
+      }
+      > .group {
+        margin: 20px -5px 0px;
+        > * {
+          margin: 0px 5px;
+          .bold {
+            font-weight: 400;
+          }
+        }
+      }
+    }
+  }
+  > .box-list-post {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0px -5px 30px;
+    > .box-post {
+      display: inline-block;
+      position: relative;
+      width: calc((100% - 30px) / 3);
+      margin: 5px;
+      > .dummy {
+        margin-top: 100%;
+      }
+      > .post {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-color: $post-user-bg;
+        width: 100%;
+        overflow: hidden;
+        > img {
+          width: 100%;
+          border: $post-user-border;
+        }
+      }
+    }
+  }
+}
