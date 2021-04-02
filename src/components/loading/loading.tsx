@@ -22,7 +22,7 @@ export default function Loading() {
 
       setIsLoadLottie(true);
     }
-  }, [animationBoxRef]);
+  }, [animationBoxRef]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <div id="lottie-container" className="Loading">
