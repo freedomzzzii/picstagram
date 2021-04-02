@@ -1,4 +1,5 @@
 import './App.scss';
+import 'animate.css';
 
 // components
 import Navbar from './components/navbar/Navbar';
@@ -8,7 +9,7 @@ import Home from './pages/home/home';
 function App() {
   return (
     <div className="App">
-      <Navbar />
+    <Navbar />
       <Home />
     </div>
   );
