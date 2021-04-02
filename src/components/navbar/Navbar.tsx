@@ -85,32 +85,34 @@ function Navbar() {
 
   return (
     <div className="Navbar">
-      <span className="title">Picstagram</span>
-      <span className="box-search" ref={dropdownRef}>
-        <input placeholder="search" value={search} onChange={handleSearch} />
-        <div className={`dropdown${showDropdown ? ' active' : ''}`}>
-          {
-            searchUsers.data?.results ?
-              searchUsers.data?.results.map((element: searchUserType) => (
-                <div className="user">
-                  <span className="box-avatar">
-                    <img className="avatar" src={element.profile_image.medium} alt="avatar" />
-                  </span>
-                  <span className="group">
-                    <div className="username">{element.username}</div>
-                    <div className="bio">{element.bio}</div>
-                  </span>
-                </div>
-              ))
-              : null
-          }
-        </div>
-      </span>
-      <span className="box-menu">
-        <span className="box-avatar">
-          <img className="avatar" src={getProfile.data?.profile_image.medium} alt="avatar" />
+      <div className="nav">
+        <span className="title">Picstagram</span>
+        <span className="box-search" ref={dropdownRef}>
+          <input placeholder="search" value={search} onChange={handleSearch} />
+          <div className={`dropdown${showDropdown ? ' active' : ''}`}>
+            {
+              searchUsers.data?.results ?
+                searchUsers.data?.results.map((element: searchUserType) => (
+                  <div className="user">
+                    <span className="box-avatar">
+                      <img className="avatar" src={element.profile_image.medium} alt="avatar" />
+                    </span>
+                    <span className="group">
+                      <div className="username">{element.username}</div>
+                      <div className="bio">{element.bio}</div>
+                    </span>
+                  </div>
+                ))
+                : null
+            }
+          </div>
         </span>
-      </span>
+        <span className="box-menu">
+          <span className="box-avatar">
+            <img className="avatar" src={getProfile.data?.profile_image.medium} alt="avatar" />
+          </span>
+        </span>
+      </div>
     </div>
   );
 }
